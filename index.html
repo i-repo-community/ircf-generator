@@ -8,224 +8,241 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-50 text-gray-900">
-    <div class="container mx-auto p-6 space-y-8 max-w-2xl">
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+    <div class="container mx-auto p-6 max-w-6xl min-h-screen flex flex-col">
 
-        <div class="flex justify-center mb-2">
-            <img src="https://community.dl-asobica.com/public/uploads/community/image_main/demo-cimtops/028d4e63-0759-4321-81ae-0d47ac22c196.png"
-                alt="ロゴ" class="max-w-full w-full sm:w-2/3 " />
-        </div>
-        <h1 class="text-2xl font-bold text-orange-600">アイレポ設定ファイル(.ircf) 生成くん</h1>
+        <!-- ヘッダーエリア -->
+        <div class="space-y-6 mb-8">
+            <div class="flex justify-center mb-2">
+                <img src="https://community.dl-asobica.com/public/uploads/community/image_main/demo-cimtops/028d4e63-0759-4321-81ae-0d47ac22c196.png"
+                    alt="ロゴ" class="max-w-full w-full sm:w-2/3 " />
+            </div>
+            <h1 class="text-2xl font-bold text-orange-600">アイレポ設定ファイル(.ircf) 生成くん</h1>
 
-        <!-- 説明文書 -->
-        <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
-            <div class="prose text-sm text-gray-700">
-                <h2 class="text-lg font-semibold text-orange-700 mb-2">このツールについて</h2>
-                <p class="mb-2">
-                    <strong>i-Reporter</strong>（アイレポーター）は、紙の帳票やExcelフォームをiPad・iPhone・Windowsで利用できる電子フォームに変換するペーパーレス化ソリューションです。
-                </p>
-                <p class="mb-3">
-                    i-Reporterアプリの各システム環境設定情報を予めセットした専用の設定ファイル（<strong>.ircf</strong>）をi-Reporterアプリへ読込ませる事で、<strong>システム環境設定項目を自動でセット</strong>することができます。
-                </p>
+            <!-- 説明文書 -->
+            <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                <div class="prose text-sm text-gray-700">
+                    <h2 class="text-lg font-semibold text-orange-700 mb-2">このツールについて</h2>
+                    <p class="mb-2">
+                        <strong>i-Reporter</strong>（アイレポーター）は、紙の帳票やExcelフォームをiPad・iPhone・Windowsで利用できる電子フォームに変換するペーパーレス化ソリューションです。
+                    </p>
+                    <p class="mb-3">
+                        i-Reporterアプリの各システム環境設定情報を予めセットした専用の設定ファイル（<strong>.ircf</strong>）をi-Reporterアプリへ読込ませる事で、<strong>システム環境設定項目を自動でセット</strong>することができます。
+                    </p>
 
-                <h3 class="font-semibold text-orange-600 mb-1">🎯 主な機能</h3>
-                <ul class="list-disc list-inside mb-3 space-y-1">
-                    <li>サーバー接続設定（複数サーバー対応）</li>
-                    <li>プロキシ・認証設定</li>
-                    <li>PDF出力・メール送信設定</li>
-                    <li>音声入力・署名タブレット設定</li>
-                    <li><strong>既存の設定ファイル読込・編集・保存</strong></li>
-                </ul>
-
-                <h3 class="font-semibold text-orange-600 mb-1">📱 配布・活用メリット</h3>
-                <ul class="list-disc list-inside mb-3 space-y-1">
-                    <li><strong>初期設定の簡略化</strong>：ユーザーが個別に設定する手間を削減</li>
-                    <li><strong>大量端末の統一管理</strong>：システム環境設定の内容を容易に統一</li>
-                    <li><strong>簡単配布</strong>：メール添付やHP公開で各ユーザーへ配布可能</li>
-                    <li><strong>端末キッティング最適化</strong>：導入時の作業効率を大幅向上</li>
-                </ul>
-
-                <div class="bg-blue-50 border border-blue-200 rounded p-3 mb-3">
-                    <h4 class="font-semibold text-blue-700 mb-2">🔧 配布方法の例</h4>
-                    <ul class="text-xs space-y-1">
-                        <li>📧 <strong>メール添付</strong>：生成した.ircfファイルを添付してメール送信</li>
-                        <li>🌐 <strong>HP公開</strong>：WebサイトやPortalサイトで.ircfファイルを公開</li>
-                        <li>📁 <strong>共有フォルダ</strong>：社内ネットワークの共有フォルダに配置</li>
-                        <li>💾 <strong>記録媒体</strong>：USBメモリやクラウドストレージ経由で配布</li>
+                    <h3 class="font-semibold text-orange-600 mb-1">🎯 主な機能</h3>
+                    <ul class="list-disc list-inside mb-3 space-y-1">
+                        <li>サーバー接続設定（複数サーバー対応）</li>
+                        <li>プロキシ・認証設定</li>
+                        <li>PDF出力・メール送信設定</li>
+                        <li>音声入力・署名タブレット設定</li>
+                        <li><strong>既存の設定ファイル読込・編集・保存</strong></li>
                     </ul>
-                </div>
 
-                <h3 class="font-semibold text-orange-600 mb-1">⚠️ 免責事項</h3>
-                <div class="text-xs bg-yellow-50 border border-yellow-200 rounded p-2">
-                    <p class="mb-1">
-                        このツールは<strong>コミュニティ有志によるオープンソースソフトウェア</strong>です。
-                    </p>
-                    <p>
-                        利用により生じたいかなる損害についても、開発者・コミュニティは一切の責任を負いません。自己責任でご利用ください。
-                    </p>
-                </div>
+                    <h3 class="font-semibold text-orange-600 mb-1">📱 配布・活用メリット</h3>
+                    <ul class="list-disc list-inside mb-3 space-y-1">
+                        <li><strong>初期設定の簡略化</strong>：ユーザーが個別に設定する手間を削減</li>
+                        <li><strong>大量端末の統一管理</strong>：システム環境設定の内容を容易に統一</li>
+                        <li><strong>簡単配布</strong>：メール添付やHP公開で各ユーザーへ配布可能</li>
+                        <li><strong>端末キッティング最適化</strong>：導入時の作業効率を大幅向上</li>
+                    </ul>
 
-                <div class="mt-3 pt-3 border-t border-orange-200">
-                    <p class="text-xs text-gray-600">
-                        📖 <strong>.ircfファイルの詳細説明は公式ドキュメントをご覧ください：</strong><br>
-                        <a href="https://cimtops-support.com/i-Reporter/ir_manuals/jp/ios_app/ConfigurationFileReading_jp.pdf"
-                            target="_blank" rel="noopener noreferrer"
-                            class="text-blue-600 hover:text-blue-800 underline">
-                            専用設定ファイル読込によるシステム環境設定項目の自動設定機能 (PDF)
-                        </a>
-                    </p>
+                    <div class="bg-blue-50 border border-blue-200 rounded p-3 mb-3">
+                        <h4 class="font-semibold text-blue-700 mb-2">🔧 配布方法の例</h4>
+                        <ul class="text-xs space-y-1">
+                            <li>📧 <strong>メール添付</strong>：生成した.ircfファイルを添付してメール送信</li>
+                            <li>🌐 <strong>HP公開</strong>：WebサイトやPortalサイトで.ircfファイルを公開</li>
+                            <li>📁 <strong>共有フォルダ</strong>：社内ネットワークの共有フォルダに配置</li>
+                            <li>💾 <strong>記録媒体</strong>：USBメモリやクラウドストレージ経由で配布</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="font-semibold text-orange-600 mb-1">⚠️ 免責事項</h3>
+                    <div class="text-xs bg-yellow-50 border border-yellow-200 rounded p-2">
+                        <p class="mb-1">
+                            このツールは<strong>コミュニティ有志によるオープンソースソフトウェア</strong>です。
+                        </p>
+                        <p>
+                            利用により生じたいかなる損害についても、開発者・コミュニティは一切の責任を負いません。自己責任でご利用ください。
+                        </p>
+                    </div>
+
+                    <div class="mt-3 pt-3 border-t border-orange-200">
+                        <p class="text-xs text-gray-600">
+                            📖 <strong>.ircfファイルの詳細説明は公式ドキュメントをご覧ください：</strong><br>
+                            <a href="https://cimtops-support.com/i-Reporter/ir_manuals/jp/ios_app/ConfigurationFileReading_jp.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="text-blue-600 hover:text-blue-800 underline">
+                                専用設定ファイル読込によるシステム環境設定項目の自動設定機能 (PDF)
+                            </a>
+                        </p>
+                    </div>
                 </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <label for="loadFile"
+                    class="inline-block cursor-pointer px-4 py-2 rounded bg-orange-500 text-white font-semibold hover:bg-orange-600 transition">
+                    設定ファイル読込
+                </label>
+                <input type="file" id="loadFile" accept=".ircf,application/json" class="hidden"
+                    onchange="loadSettingFile(event)">
+                <span id="loadStatus" class="text-sm text-gray-500"></span>
             </div>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-            <label for="loadFile"
-                class="inline-block cursor-pointer px-4 py-2 rounded bg-orange-500 text-white font-semibold hover:bg-orange-600 transition">
-                設定ファイル読込
-            </label>
-            <input type="file" id="loadFile" accept=".ircf,application/json" class="hidden"
-                onchange="loadSettingFile(event)">
-            <span id="loadStatus" class="text-sm text-gray-500"></span>
-        </div>
-
-        <form id="ircfForm" class="space-y-6" onsubmit="event.preventDefault(); generateJSON();">
-            <details>
-                <summary class="font-semibold">基本情報</summary>
-                <fieldset class="border rounded-lg p-4 space-y-2">
-                    <label class="flex flex-col">Version
-                        <input type="number" name="version" value="1" min="1" required class="mt-1 input">
-                    </label>
-                    <label class="flex flex-col">Revision
-                        <input type="number" name="revision" value="1" min="1" required class="mt-1 input">
-                    </label>
-                </fieldset>
-            </details>
-
-            <details>
-                <summary class="font-semibold">サーバー設定（全体）</summary>
-                <fieldset class="border rounded-lg p-4 space-y-2">
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="autoLogin"
-                            class="checkbox" checked> 自動ログイン (AutoLogin)</label>
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="canUseOffline"
-                            class="checkbox" checked> オフライン利用可 (CanUseOffline)</label>
-                    <label class="flex flex-col">要求タイムアウト (TimeOut)
-                        <select name="timeout" class="mt-1 select w-40">
-                            <option value="1">1 秒</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5" selected>5</option>
-                        </select>
-                    </label>
-                    <details class="mt-2">
-                        <summary class="cursor-pointer font-semibold">プロキシ設定</summary>
-                        <div class="mt-2 space-y-2 ml-4">
-                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="useProxy"
-                                    class="checkbox"> プロキシを使用する (UseProxyIsChecked)</label>
-                            <label class="flex flex-col">Proxy IP
-                                <input type="text" name="proxyIp" value="111.222.333.444" class="mt-1 input">
+        <!-- メインコンテンツエリア：レスポンシブレイアウト -->
+        <div class="flex flex-col lg:flex-row gap-8 flex-1 min-h-0">
+            <!-- フォームエリア -->
+            <div class="flex-1 lg:w-1/2 overflow-y-auto">
+                <form id="ircfForm" class="space-y-6" onsubmit="event.preventDefault(); generateJSON();">
+                    <details>
+                        <summary class="font-semibold">基本情報</summary>
+                        <fieldset class="border rounded-lg p-4 space-y-2">
+                            <label class="flex flex-col">Version
+                                <input type="number" name="version" value="1" min="1" required class="mt-1 input">
                             </label>
-                            <label class="flex flex-col">Proxy Port
-                                <input type="number" name="proxyPort" value="555" class="mt-1 input">
+                            <label class="flex flex-col">Revision
+                                <input type="number" name="revision" value="1" min="1" required class="mt-1 input">
                             </label>
-                            <label class="flex flex-col">Proxy User
-                                <input type="text" name="proxyUser" value="proxyuser" class="mt-1 input">
-                            </label>
-                            <label class="flex flex-col">Proxy Pass
-                                <input type="password" name="proxyPass" value="proxypass" class="mt-1 input">
-                            </label>
-                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="support100"
-                                    class="checkbox" checked> 100‑Continue をサポート (Support100Continue)</label>
-                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="useAdAuth"
-                                    class="checkbox"> AD 認証を使用 (UseAdAuthentication)</label>
-                        </div>
+                        </fieldset>
                     </details>
-                </fieldset>
-            </details>
 
-            <fieldset class="border rounded-lg p-4" id="serversContainer">
-                <legend class="font-semibold">接続先設定（複数可）</legend>
-            </fieldset>
-            <button type="button" onclick="addServer()" class="btn">＋接続先を追加</button>
+                    <details>
+                        <summary class="font-semibold">サーバー設定（全体）</summary>
+                        <fieldset class="border rounded-lg p-4 space-y-2">
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="autoLogin"
+                                    class="checkbox" checked> 自動ログイン (AutoLogin)</label>
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="canUseOffline"
+                                    class="checkbox" checked> オフライン利用可 (CanUseOffline)</label>
+                            <label class="flex flex-col">要求タイムアウト (TimeOut)
+                                <select name="timeout" class="mt-1 select w-40">
+                                    <option value="1">1 秒</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5" selected>5</option>
+                                </select>
+                            </label>
+                            <details class="mt-2">
+                                <summary class="cursor-pointer font-semibold">プロキシ設定</summary>
+                                <div class="mt-2 space-y-2 ml-4">
+                                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="useProxy"
+                                            class="checkbox"> プロキシを使用する (UseProxyIsChecked)</label>
+                                    <label class="flex flex-col">Proxy IP
+                                        <input type="text" name="proxyIp" value="111.222.333.444" class="mt-1 input">
+                                    </label>
+                                    <label class="flex flex-col">Proxy Port
+                                        <input type="number" name="proxyPort" value="555" class="mt-1 input">
+                                    </label>
+                                    <label class="flex flex-col">Proxy User
+                                        <input type="text" name="proxyUser" value="proxyuser" class="mt-1 input">
+                                    </label>
+                                    <label class="flex flex-col">Proxy Pass
+                                        <input type="password" name="proxyPass" value="proxypass" class="mt-1 input">
+                                    </label>
+                                    <label class="inline-flex items-center gap-2"><input type="checkbox"
+                                            name="support100" class="checkbox" checked> 100‑Continue をサポート
+                                        (Support100Continue)</label>
+                                    <label class="inline-flex items-center gap-2"><input type="checkbox"
+                                            name="useAdAuth" class="checkbox"> AD 認証を使用 (UseAdAuthentication)</label>
+                                </div>
+                            </details>
+                        </fieldset>
+                    </details>
 
-            <details>
-                <summary class="font-semibold">メール設定</summary>
-                <fieldset class="border rounded-lg p-4 space-y-2">
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="sendMailPDF"
-                            class="checkbox" checked> PDF をメール送信 (SendMailPDF)</label>
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="sendCrashReport"
-                            class="checkbox" checked> クラッシュレポート送信 (SendCrashReport)</label>
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="generatePDFVector"
-                            class="checkbox" checked> ベクター PDF 生成 (GeneratePDFWithVector)</label>
-                </fieldset>
-            </details>
+                    <fieldset class="border rounded-lg p-4" id="serversContainer">
+                        <legend class="font-semibold">接続先設定（複数可）</legend>
+                    </fieldset>
+                    <button type="button" onclick="addServer()" class="btn">＋接続先を追加</button>
 
-            <details>
-                <summary class="font-semibold">クラスター設定</summary>
-                <fieldset class="border rounded-lg p-4 space-y-2">
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="selectedClusterFrame"
-                            class="checkbox" checked> SelectedClusterFrame</label>
-                    <label class="flex flex-col">GPS フィルター距離 (GpsDistanceFilter)
-                        <input type="number" name="gpsDistanceFilter" value="100" min="0" class="mt-1 input w-40">
-                    </label>
-                </fieldset>
-            </details>
+                    <details>
+                        <summary class="font-semibold">メール設定</summary>
+                        <fieldset class="border rounded-lg p-4 space-y-2">
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="sendMailPDF"
+                                    class="checkbox" checked> PDF をメール送信 (SendMailPDF)</label>
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="sendCrashReport"
+                                    class="checkbox" checked> クラッシュレポート送信 (SendCrashReport)</label>
+                            <label class="inline-flex items-center gap-2"><input type="checkbox"
+                                    name="generatePDFVector" class="checkbox" checked> ベクター PDF 生成
+                                (GeneratePDFWithVector)</label>
+                        </fieldset>
+                    </details>
 
-            <details>
-                <summary class="font-semibold">PDF 出力</summary>
-                <fieldset class="border rounded-lg p-4 space-y-2">
-                    <label class="flex flex-col">PDF フォント (PdfOutputFont)
-                        <input type="text" name="pdfFont" value="Font Name" class="mt-1 input">
-                    </label>
-                </fieldset>
-            </details>
+                    <details>
+                        <summary class="font-semibold">クラスター設定</summary>
+                        <fieldset class="border rounded-lg p-4 space-y-2">
+                            <label class="inline-flex items-center gap-2"><input type="checkbox"
+                                    name="selectedClusterFrame" class="checkbox" checked> SelectedClusterFrame</label>
+                            <label class="flex flex-col">GPS フィルター距離 (GpsDistanceFilter)
+                                <input type="number" name="gpsDistanceFilter" value="100" min="0"
+                                    class="mt-1 input w-40">
+                            </label>
+                        </fieldset>
+                    </details>
 
-            <details>
-                <summary class="font-semibold">計算チェック</summary>
-                <fieldset class="border rounded-lg p-4 space-y-2">
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="calculateCheck"
-                            class="checkbox"> CalculateCheck</label>
-                </fieldset>
-            </details>
+                    <details>
+                        <summary class="font-semibold">PDF 出力</summary>
+                        <fieldset class="border rounded-lg p-4 space-y-2">
+                            <label class="flex flex-col">PDF フォント (PdfOutputFont)
+                                <input type="text" name="pdfFont" value="Font Name" class="mt-1 input">
+                            </label>
+                        </fieldset>
+                    </details>
 
-            <details>
-                <summary class="font-semibold">音声入力</summary>
-                <fieldset class="border rounded-lg p-4 space-y-2">
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="usingVoiceInput"
-                            class="checkbox" checked> 音声入力を使用 (UsingVoiceInput)</label>
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="permissionVoiceInput"
-                            class="checkbox" checked> 返信時も音声入力許可 (PermissionVoiceInputWhileAnswerBack)</label>
-                    <label class="flex flex-col">音声ピッチ (UtterancePitch)
-                        <input type="number" step="0.1" name="utterancePitch" value="1" min="0.5" max="2"
-                            class="mt-1 input w-40">
-                    </label>
-                    <label class="flex flex-col">音声速度 (UtteranceRate)
-                        <input type="number" step="0.1" name="utteranceRate" value="1" min="0.5" max="2"
-                            class="mt-1 input w-40">
-                    </label>
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="outputSpeaker"
-                            class="checkbox" checked> スピーカー出力 (OutputSpeaker)</label>
-                </fieldset>
-            </details>
+                    <details>
+                        <summary class="font-semibold">計算チェック</summary>
+                        <fieldset class="border rounded-lg p-4 space-y-2">
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="calculateCheck"
+                                    class="checkbox"> CalculateCheck</label>
+                        </fieldset>
+                    </details>
 
-            <details>
-                <summary class="font-semibold">外部機器</summary>
-                <fieldset class="border rounded-lg p-4 space-y-2">
-                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="useSignatureTablet"
-                            class="checkbox" checked> 署名タブレットを使用 (UseSignatureTablet)</label>
-                </fieldset>
-            </details>
+                    <details>
+                        <summary class="font-semibold">音声入力</summary>
+                        <fieldset class="border rounded-lg p-4 space-y-2">
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="usingVoiceInput"
+                                    class="checkbox" checked> 音声入力を使用 (UsingVoiceInput)</label>
+                            <label class="inline-flex items-center gap-2"><input type="checkbox"
+                                    name="permissionVoiceInput" class="checkbox" checked> 返信時も音声入力許可
+                                (PermissionVoiceInputWhileAnswerBack)</label>
+                            <label class="flex flex-col">音声ピッチ (UtterancePitch)
+                                <input type="number" step="0.1" name="utterancePitch" value="1" min="0.5" max="2"
+                                    class="mt-1 input w-40">
+                            </label>
+                            <label class="flex flex-col">音声速度 (UtteranceRate)
+                                <input type="number" step="0.1" name="utteranceRate" value="1" min="0.5" max="2"
+                                    class="mt-1 input w-40">
+                            </label>
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="outputSpeaker"
+                                    class="checkbox" checked> スピーカー出力 (OutputSpeaker)</label>
+                        </fieldset>
+                    </details>
 
-            <!-- Submit -->
-            <button type="submit" class="btn-primary">JSON を生成</button>
-        </form>
+                    <details>
+                        <summary class="font-semibold">外部機器</summary>
+                        <fieldset class="border rounded-lg p-4 space-y-2">
+                            <label class="inline-flex items-center gap-2"><input type="checkbox"
+                                    name="useSignatureTablet" class="checkbox" checked> 署名タブレットを使用
+                                (UseSignatureTablet)</label>
+                        </fieldset>
+                    </details>
 
-        <!-- 出力 -->
-        <div class="space-y-2">
-            <h2 class="text-xl font-semibold">生成結果</h2>
-            <textarea id="output" class="w-full h-72 p-2 font-mono text-sm bg-gray-100 rounded" readonly></textarea>
-            <div class="pt-4">
-                <a id="downloadBtn" class="hidden btn-secondary w-max"></a>
+                    <!-- Submit -->
+                    <button type="submit" class="btn-primary">JSON を生成</button>
+                </form>
+            </div>
+
+            <!-- 出力エリア -->
+            <div class="flex-1 lg:w-1/2 flex flex-col min-h-0">
+                <div class="flex flex-col h-full">
+                    <h2 class="text-xl font-semibold mb-2">生成結果</h2>
+                    <textarea id="output" class="flex-1 w-full p-2 font-mono text-sm bg-gray-100 rounded resize-none"
+                        readonly></textarea>
+                    <div class="pt-4">
+                        <a id="downloadBtn" class="hidden btn-secondary w-max"></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -233,6 +250,51 @@
     <script>
         // Tailwind element macros
         document.documentElement.classList.add('dark'); // optional dark mode testing
+
+        // ------- リアルタイム生成機能 -------
+        let isGenerating = false;
+
+        function generateJSONRealtime() {
+            if (isGenerating) return;
+            isGenerating = true;
+
+            // 少し遅延を入れて連続実行を防ぐ
+            setTimeout(() => {
+                generateJSON();
+                isGenerating = false;
+            }, 100);
+        }
+
+        // フォーム要素にイベントリスナーを追加
+        function setupRealtimeGeneration() {
+            const form = document.getElementById('ircfForm');
+
+            // 全ての入力要素にイベントリスナーを追加
+            form.addEventListener('input', generateJSONRealtime);
+            form.addEventListener('change', generateJSONRealtime);
+
+            // 動的に追加される要素（サーバー設定）も監視
+            const observer = new MutationObserver(() => {
+                // 新しく追加された要素にもイベントリスナーを設定
+                const newInputs = form.querySelectorAll('input, select, textarea');
+                newInputs.forEach(input => {
+                    if (!input.hasAttribute('data-listener-added')) {
+                        input.addEventListener('input', generateJSONRealtime);
+                        input.addEventListener('change', generateJSONRealtime);
+                        input.setAttribute('data-listener-added', 'true');
+                    }
+                });
+            });
+
+            observer.observe(form, { childList: true, subtree: true });
+        }
+
+        // ページ読み込み時にセットアップ
+        document.addEventListener('DOMContentLoaded', () => {
+            setupRealtimeGeneration();
+            // 初期生成
+            generateJSON();
+        });
 
         // ------- 設定ファイル読込機能 -------
         function loadSettingFile(event) {
@@ -398,6 +460,9 @@
 
             // detailsを全て閉じる
             document.querySelectorAll('details').forEach(d => d.open = false);
+
+            // 読込後にリアルタイム生成を実行
+            generateJSONRealtime();
         }
 
         // ------- 接続先ブロックを動的追加 -------
@@ -422,12 +487,30 @@
           <input type="password" name="password${serverIndex}" value="${initial.Password || ''}" class="mt-1 input">
         </label>
         <label class="inline-flex items-center gap-2"><input type="checkbox" name="canChange${serverIndex}" ${initial.CanChangeWithLocalReports ? 'checked' : ''} class="checkbox"> ローカル帳票存在時に接続先変更可能</label>
-        <button type="button" onclick="this.parentElement.remove()" class="btn-danger mt-2">削除</button>`;
+        <button type="button" onclick="removeServer(this)" class="btn-danger mt-2">削除</button>`;
             c.appendChild(div);
+
+            // 新しく追加された要素にリアルタイム生成のイベントリスナーを追加
+            const inputs = div.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', generateJSONRealtime);
+                input.addEventListener('change', generateJSONRealtime);
+                input.setAttribute('data-listener-added', 'true');
+            });
+
             serverIndex++;
             // 追加した削除ボタンにもTailwindクラスを付与
             const btn = div.querySelector('.btn-danger');
             if (btn) btn.classList.add('px-3', 'py-1', 'rounded', 'bg-red-500', 'text-white', 'hover:bg-red-600');
+
+            // リアルタイム生成を実行
+            generateJSONRealtime();
+        }
+
+        // サーバー削除関数
+        function removeServer(button) {
+            button.parentElement.remove();
+            generateJSONRealtime();
         }
 
         // サンプル初期接続先
