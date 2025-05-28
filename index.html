@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>i‑Reporter 設定ファイル (.ircf) 生成フォーム</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <div class="container mx-auto p-6 space-y-8 max-w-2xl">
+
+        <div class="flex justify-center mb-2">
+            <img src="https://community.dl-asobica.com/public/uploads/community/image_main/demo-cimtops/028d4e63-0759-4321-81ae-0d47ac22c196.png"
+                alt="ロゴ" class="max-w-full w-full sm:w-2/3 " />
+        </div>
+        <h1 class="text-2xl font-bold text-orange-600">アイレポ設定ファイル(.ircf) 生成くん</h1>
+
+        <!-- 説明文書 -->
+        <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+            <div class="prose text-sm text-gray-700">
+                <h2 class="text-lg font-semibold text-orange-700 mb-2">このツールについて</h2>
+                <p class="mb-2">
+                    <strong>i-Reporter</strong>（アイレポーター）は、紙の帳票やExcelフォームをiPad・iPhone・Windowsで利用できる電子フォームに変換するペーパーレス化ソリューションです。
+                </p>
+                <p class="mb-3">
+                    i-Reporterアプリの各システム環境設定情報を予めセットした専用の設定ファイル（<strong>.ircf</strong>）をi-Reporterアプリへ読込ませる事で、<strong>システム環境設定項目を自動でセット</strong>することができます。
+                </p>
+
+                <h3 class="font-semibold text-orange-600 mb-1">🎯 主な機能</h3>
+                <ul class="list-disc list-inside mb-3 space-y-1">
+                    <li>サーバー接続設定（複数サーバー対応）</li>
+                    <li>プロキシ・認証設定</li>
+                    <li>PDF出力・メール送信設定</li>
+                    <li>音声入力・署名タブレット設定</li>
+                    <li><strong>既存の設定ファイル読込・編集・保存</strong></li>
+                </ul>
+
+                <h3 class="font-semibold text-orange-600 mb-1">📱 配布・活用メリット</h3>
+                <ul class="list-disc list-inside mb-3 space-y-1">
+                    <li><strong>初期設定の簡略化</strong>：ユーザーが個別に設定する手間を削減</li>
+                    <li><strong>大量端末の統一管理</strong>：システム環境設定の内容を容易に統一</li>
+                    <li><strong>簡単配布</strong>：メール添付やHP公開で各ユーザーへ配布可能</li>
+                    <li><strong>端末キッティング最適化</strong>：導入時の作業効率を大幅向上</li>
+                </ul>
+
+                <div class="bg-blue-50 border border-blue-200 rounded p-3 mb-3">
+                    <h4 class="font-semibold text-blue-700 mb-2">🔧 配布方法の例</h4>
+                    <ul class="text-xs space-y-1">
+                        <li>📧 <strong>メール添付</strong>：生成した.ircfファイルを添付してメール送信</li>
+                        <li>🌐 <strong>HP公開</strong>：WebサイトやPortalサイトで.ircfファイルを公開</li>
+                        <li>📁 <strong>共有フォルダ</strong>：社内ネットワークの共有フォルダに配置</li>
+                        <li>💾 <strong>記録媒体</strong>：USBメモリやクラウドストレージ経由で配布</li>
+                    </ul>
+                </div>
+
+                <h3 class="font-semibold text-orange-600 mb-1">⚠️ 免責事項</h3>
+                <div class="text-xs bg-yellow-50 border border-yellow-200 rounded p-2">
+                    <p class="mb-1">
+                        このツールは<strong>コミュニティ有志によるオープンソースソフトウェア</strong>です。
+                    </p>
+                    <p>
+                        利用により生じたいかなる損害についても、開発者・コミュニティは一切の責任を負いません。自己責任でご利用ください。
+                    </p>
+                </div>
+
+                <div class="mt-3 pt-3 border-t border-orange-200">
+                    <p class="text-xs text-gray-600">
+                        📖 <strong>.ircfファイルの詳細説明は公式ドキュメントをご覧ください：</strong><br>
+                        <a href="https://cimtops-support.com/i-Reporter/ir_manuals/jp/ios_app/ConfigurationFileReading_jp.pdf"
+                            target="_blank" rel="noopener noreferrer"
+                            class="text-blue-600 hover:text-blue-800 underline">
+                            専用設定ファイル読込によるシステム環境設定項目の自動設定機能 (PDF)
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+            <label for="loadFile"
+                class="inline-block cursor-pointer px-4 py-2 rounded bg-orange-500 text-white font-semibold hover:bg-orange-600 transition">
+                設定ファイル読込
+            </label>
+            <input type="file" id="loadFile" accept=".ircf,application/json" class="hidden"
+                onchange="loadSettingFile(event)">
+            <span id="loadStatus" class="text-sm text-gray-500"></span>
+        </div>
+
+        <form id="ircfForm" class="space-y-6" onsubmit="event.preventDefault(); generateJSON();">
+            <details>
+                <summary class="font-semibold">基本情報</summary>
+                <fieldset class="border rounded-lg p-4 space-y-2">
+                    <label class="flex flex-col">Version
+                        <input type="number" name="version" value="1" min="1" required class="mt-1 input">
+                    </label>
+                    <label class="flex flex-col">Revision
+                        <input type="number" name="revision" value="1" min="1" required class="mt-1 input">
+                    </label>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary class="font-semibold">サーバー設定（全体）</summary>
+                <fieldset class="border rounded-lg p-4 space-y-2">
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="autoLogin"
+                            class="checkbox" checked> 自動ログイン (AutoLogin)</label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="canUseOffline"
+                            class="checkbox" checked> オフライン利用可 (CanUseOffline)</label>
+                    <label class="flex flex-col">要求タイムアウト (TimeOut)
+                        <select name="timeout" class="mt-1 select w-40">
+                            <option value="1">1 秒</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5" selected>5</option>
+                        </select>
+                    </label>
+                    <details class="mt-2">
+                        <summary class="cursor-pointer font-semibold">プロキシ設定</summary>
+                        <div class="mt-2 space-y-2 ml-4">
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="useProxy"
+                                    class="checkbox"> プロキシを使用する (UseProxyIsChecked)</label>
+                            <label class="flex flex-col">Proxy IP
+                                <input type="text" name="proxyIp" value="111.222.333.444" class="mt-1 input">
+                            </label>
+                            <label class="flex flex-col">Proxy Port
+                                <input type="number" name="proxyPort" value="555" class="mt-1 input">
+                            </label>
+                            <label class="flex flex-col">Proxy User
+                                <input type="text" name="proxyUser" value="proxyuser" class="mt-1 input">
+                            </label>
+                            <label class="flex flex-col">Proxy Pass
+                                <input type="password" name="proxyPass" value="proxypass" class="mt-1 input">
+                            </label>
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="support100"
+                                    class="checkbox" checked> 100‑Continue をサポート (Support100Continue)</label>
+                            <label class="inline-flex items-center gap-2"><input type="checkbox" name="useAdAuth"
+                                    class="checkbox"> AD 認証を使用 (UseAdAuthentication)</label>
+                        </div>
+                    </details>
+                </fieldset>
+            </details>
+
+            <fieldset class="border rounded-lg p-4" id="serversContainer">
+                <legend class="font-semibold">接続先設定（複数可）</legend>
+            </fieldset>
+            <button type="button" onclick="addServer()" class="btn">＋接続先を追加</button>
+
+            <details>
+                <summary class="font-semibold">メール設定</summary>
+                <fieldset class="border rounded-lg p-4 space-y-2">
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="sendMailPDF"
+                            class="checkbox" checked> PDF をメール送信 (SendMailPDF)</label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="sendCrashReport"
+                            class="checkbox" checked> クラッシュレポート送信 (SendCrashReport)</label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="generatePDFVector"
+                            class="checkbox" checked> ベクター PDF 生成 (GeneratePDFWithVector)</label>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary class="font-semibold">クラスター設定</summary>
+                <fieldset class="border rounded-lg p-4 space-y-2">
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="selectedClusterFrame"
+                            class="checkbox" checked> SelectedClusterFrame</label>
+                    <label class="flex flex-col">GPS フィルター距離 (GpsDistanceFilter)
+                        <input type="number" name="gpsDistanceFilter" value="100" min="0" class="mt-1 input w-40">
+                    </label>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary class="font-semibold">PDF 出力</summary>
+                <fieldset class="border rounded-lg p-4 space-y-2">
+                    <label class="flex flex-col">PDF フォント (PdfOutputFont)
+                        <input type="text" name="pdfFont" value="Font Name" class="mt-1 input">
+                    </label>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary class="font-semibold">計算チェック</summary>
+                <fieldset class="border rounded-lg p-4 space-y-2">
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="calculateCheck"
+                            class="checkbox"> CalculateCheck</label>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary class="font-semibold">音声入力</summary>
+                <fieldset class="border rounded-lg p-4 space-y-2">
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="usingVoiceInput"
+                            class="checkbox" checked> 音声入力を使用 (UsingVoiceInput)</label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="permissionVoiceInput"
+                            class="checkbox" checked> 返信時も音声入力許可 (PermissionVoiceInputWhileAnswerBack)</label>
+                    <label class="flex flex-col">音声ピッチ (UtterancePitch)
+                        <input type="number" step="0.1" name="utterancePitch" value="1" min="0.5" max="2"
+                            class="mt-1 input w-40">
+                    </label>
+                    <label class="flex flex-col">音声速度 (UtteranceRate)
+                        <input type="number" step="0.1" name="utteranceRate" value="1" min="0.5" max="2"
+                            class="mt-1 input w-40">
+                    </label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="outputSpeaker"
+                            class="checkbox" checked> スピーカー出力 (OutputSpeaker)</label>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary class="font-semibold">外部機器</summary>
+                <fieldset class="border rounded-lg p-4 space-y-2">
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="useSignatureTablet"
+                            class="checkbox" checked> 署名タブレットを使用 (UseSignatureTablet)</label>
+                </fieldset>
+            </details>
+
+            <!-- Submit -->
+            <button type="submit" class="btn-primary">JSON を生成</button>
+        </form>
+
+        <!-- 出力 -->
+        <div class="space-y-2">
+            <h2 class="text-xl font-semibold">生成結果</h2>
+            <textarea id="output" class="w-full h-72 p-2 font-mono text-sm bg-gray-100 rounded" readonly></textarea>
+            <div class="pt-4">
+                <a id="downloadBtn" class="hidden btn-secondary w-max"></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind element macros
+        document.documentElement.classList.add('dark'); // optional dark mode testing
+
+        // ------- 設定ファイル読込機能 -------
+        function loadSettingFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    fillFormFromJSON(data);
+                    document.getElementById('loadStatus').textContent = '設定ファイルを読み込みました';
+                } catch (err) {
+                    document.getElementById('loadStatus').textContent = 'ファイル読込エラー';
+                    console.error('ファイル読込エラー:', err, e.target.result);
+                }
+            };
+            reader.readAsText(file);
+        }
+        function fillFormFromJSON(data) {
+            const f = document.forms.ircfForm;
+            // 共通的なマッピング＋forEachで各セクションをリファクタリング
+            // 基本情報
+            const basicMap = [
+                ["version", "Version", "value"],
+                ["revision", "Revision", "value"]
+            ];
+            basicMap.forEach(([formName, jsonKey, prop]) => {
+                if (f[formName] && data[jsonKey] !== undefined) {
+                    f[formName][prop] = data[jsonKey];
+                }
+            });
+
+            // Server
+            if (data.Server) {
+                const serverMap = [
+                    ["autoLogin", "AutoLogin", "checked"],
+                    ["canUseOffline", "CanUseOffline", "checked"],
+                    ["timeout", "TimeOut", "value"],
+                    ["useProxy", "UseProxyIsChecked", "checked"],
+                    ["proxyIp", "ProxyIpAddress", "value"],
+                    ["proxyPort", "ProxyPort", "value"],
+                    ["proxyUser", "ProxyUserName", "value"],
+                    ["proxyPass", "ProxyPassword", "value"],
+                    ["support100", "Support100Continue", "checked"],
+                    ["useAdAuth", "UseAdAuthentication", "checked"]
+                ];
+                serverMap.forEach(([formName, jsonKey, prop]) => {
+                    if (f[formName] && data.Server[jsonKey] !== undefined) {
+                        f[formName][prop] = prop === "checked" ? !!data.Server[jsonKey] : data.Server[jsonKey];
+                    }
+                });
+                // サーバーリスト
+                document.getElementById('serversContainer').innerHTML = '<legend class="font-semibold">接続先設定（複数可）</legend>';
+                serverIndex = 0;
+                if (Array.isArray(data.Server.Servers)) {
+                    data.Server.Servers.forEach(s => addServer(s));
+                }
+            }
+
+            // Mail
+            if (data.Mail) {
+                const mailMap = [
+                    ["sendMailPDF", "SendMailPDF", "checked"],
+                    ["sendCrashReport", "SendCrashReport", "checked"],
+                    ["generatePDFVector", "GeneratePDFWithVector", "checked"]
+                ];
+                mailMap.forEach(([formName, jsonKey, prop]) => {
+                    if (f[formName] && data.Mail[jsonKey] !== undefined) {
+                        f[formName][prop] = !!data.Mail[jsonKey];
+                    }
+                });
+            }
+
+            // Clusters
+            if (data.Clusters) {
+                const clustersMap = [
+                    ["selectedClusterFrame", "SelectedClusterFrame", "checked"],
+                    ["gpsDistanceFilter", "GpsDistanceFilter", "value"]
+                ];
+                clustersMap.forEach(([formName, jsonKey, prop]) => {
+                    if (f[formName] && data.Clusters[jsonKey] !== undefined) {
+                        f[formName][prop] = data.Clusters[jsonKey];
+                    }
+                });
+            }
+
+            // Pdf
+            if (data.Pdf) {
+                if (f.pdfFont && data.Pdf.PdfOutputFont !== undefined) {
+                    f.pdfFont.value = data.Pdf.PdfOutputFont;
+                }
+            }
+
+            // CalculateCheck
+            if (data.CalculateCheck) {
+                if (f.calculateCheck && data.CalculateCheck.CalculateCheck !== undefined) {
+                    f.calculateCheck.checked = !!data.CalculateCheck.CalculateCheck;
+                }
+            }
+
+            // UsingVoiceInput
+            if (data.UsingVoiceInput) {
+                const voiceMap = [
+                    ["usingVoiceInput", "UsingVoiceInput", "checked"],
+                    ["permissionVoiceInput", "PermissionVoiceInputWhileAnswerBack", "checked"],
+                    ["utterancePitch", "UtterancePitch", "value"],
+                    ["utteranceRate", "UtteranceRate", "value"],
+                    ["outputSpeaker", "OutputSpeaker", "checked"]
+                ];
+                voiceMap.forEach(([formName, jsonKey, prop]) => {
+                    if (f[formName] && data.UsingVoiceInput[jsonKey] !== undefined) {
+                        f[formName][prop] = prop === "checked" ? !!data.UsingVoiceInput[jsonKey] : data.UsingVoiceInput[jsonKey];
+                    }
+                });
+            }
+
+            // General
+            if (data.General) {
+                const generalMap = [
+                    ["showTest", "ShowTest", "checked"],
+                    ["continueAfterSave", "ContinueAfterSave", "checked"],
+                    ["definitionSave", "DefinitionSave", "checked"],
+                    ["confirmSaveCompleted", "ConfirmSaveCompleted", "checked"],
+                    ["autoBackup", "AutoBackup", "checked"],
+                    ["showConfirmUploadDialog", "ShowConfirmUploadDialog", "checked"],
+                    ["continuousNewReport", "ContinuousNewReport", "checked"],
+                    ["launchKeepingWidth", "LaunchKeepingWidth", "checked"],
+                    ["confirmBulkUpload", "ConfirmBulkUpload", "checked"],
+                    ["initialLibrary", "InitialLibrary", "checked"],
+                    ["showSentReports", "ShowSentReports", "checked"],
+                    ["showClusterFrame", "ShowClusterFrame", "checked"],
+                    ["showNetwork", "ShowNetwork", "checked"],
+                    ["showRequiredMark", "ShowRequiredMark", "checked"],
+                    ["confirmLocalDelete", "ConfirmLocalDelete", "value"],
+                    ["printer", "Printer", "value"],
+                    ["pj673Address", "PJ 673Address", "value"],
+                    ["pj673Density", "PJ 673Density", "value"],
+                    ["gs1Delimiter", "GS1 128Delimiter", "value"],
+                    ["gs1Letter", "GS1 128Letter", "value"],
+                    ["adobeReaderPrint", "AdobeReaderPrint", "checked"],
+                    ["touchPanelSensitivity", "TouchPanelSensitivity", "value"],
+                    ["saveLocalCameraPath", "SaveLocalCameraImagePath", "value"],
+                    ["doubleClickOnActionCluster", "DoubleClickOnActionCluster", "checked"],
+                    ["continuousNewReportWithCopy", "ContinuousNewReportWithCopy", "checked"],
+                    ["useFullScreenSignArea", "UseFullScreenSignArea", "checked"],
+                    ["allowMultiClient", "AllowMultiClient", "checked"],
+                    ["useSoftwareKeyboard", "UseSoftwareKeyboard", "checked"],
+                    ["pvCameraType", "PvCameraType", "value"]
+                ];
+                generalMap.forEach(([formName, jsonKey, prop]) => {
+                    if (f[formName] && data.General[jsonKey] !== undefined) {
+                        f[formName][prop] = prop === "checked" ? !!data.General[jsonKey] : data.General[jsonKey];
+                    }
+                });
+            }
+
+            // ExternalDevice
+            if (data.ExternalDevice && data.ExternalDevice.SignatureTablet) {
+                if (f.useSignatureTablet && data.ExternalDevice.SignatureTablet.UseSignatureTablet !== undefined) {
+                    f.useSignatureTablet.checked = !!data.ExternalDevice.SignatureTablet.UseSignatureTablet;
+                }
+            }
+
+            // detailsを全て閉じる
+            document.querySelectorAll('details').forEach(d => d.open = false);
+        }
+
+        // ------- 接続先ブロックを動的追加 -------
+        let serverIndex = 0;
+        function addServer(initial = {}) {
+            const c = document.getElementById('serversContainer');
+            const div = document.createElement('div');
+            div.className = 'border rounded-lg p-4 space-y-2 mt-4';
+            div.dataset.index = serverIndex;
+            div.innerHTML = `
+        <h3 class="font-semibold">接続先 #${serverIndex + 1}</h3>
+        <label class="flex flex-col">接続先名
+          <input type="text" name="serverName${serverIndex}" value="${initial.ServerName || ''}" class="mt-1 input" required>
+        </label>
+        <label class="flex flex-col">URL
+          <input type="url" name="url${serverIndex}" value="${initial.URL || ''}" class="mt-1 input" required>
+        </label>
+        <label class="flex flex-col">ユーザーID
+          <input type="text" name="userId${serverIndex}" value="${initial.UserID || ''}" class="mt-1 input">
+        </label>
+        <label class="flex flex-col">パスワード
+          <input type="password" name="password${serverIndex}" value="${initial.Password || ''}" class="mt-1 input">
+        </label>
+        <label class="inline-flex items-center gap-2"><input type="checkbox" name="canChange${serverIndex}" ${initial.CanChangeWithLocalReports ? 'checked' : ''} class="checkbox"> ローカル帳票存在時に接続先変更可能</label>
+        <button type="button" onclick="this.parentElement.remove()" class="btn-danger mt-2">削除</button>`;
+            c.appendChild(div);
+            serverIndex++;
+            // 追加した削除ボタンにもTailwindクラスを付与
+            const btn = div.querySelector('.btn-danger');
+            if (btn) btn.classList.add('px-3', 'py-1', 'rounded', 'bg-red-500', 'text-white', 'hover:bg-red-600');
+        }
+
+        // サンプル初期接続先
+        addServer({
+            ServerName: 'CIMTOPS',
+            URL: 'https://ircl-sup001kcy.conmas-i-reporter.com/ConMasWebTEST/Rests/ConMasIReporter.aspx',
+            UserID: 'user01',
+            Password: 'p01',
+            CanChangeWithLocalReports: true
+        });
+        addServer({
+            ServerName: 'CIMTOPS2',
+            URL: 'https://ircl-sup001kcy.conmas-i-reporter.com/ConMasWebTEST2/Rests/ConMasIReporter.aspx',
+            UserID: 'user02',
+            Password: 'p02',
+            CanChangeWithLocalReports: true
+        });
+
+        // ------- JSON 生成 -------
+        function generateJSON() {
+            const f = document.forms.ircfForm;
+            const j = {
+                Version: f.version ? Number(f.version.value) : 1,
+                Revision: f.revision ? Number(f.revision.value) : 1,
+                Server: {
+                    AutoLogin: f.autoLogin ? f.autoLogin.checked : false,
+                    CanUseOffline: f.canUseOffline ? f.canUseOffline.checked : false,
+                    TimeOut: f.timeout ? Number(f.timeout.value) : 5,
+                    UseProxyIsChecked: f.useProxy ? f.useProxy.checked : false,
+                    ProxyIpAddress: f.proxyIp ? f.proxyIp.value : '',
+                    ProxyPort: f.proxyPort ? String(f.proxyPort.value) : '',
+                    ProxyUserName: f.proxyUser ? f.proxyUser.value : '',
+                    ProxyPassword: f.proxyPass ? f.proxyPass.value : '',
+                    Support100Continue: f.support100 ? f.support100.checked : false,
+                    UseAdAuthentication: f.useAdAuth ? f.useAdAuth.checked : false,
+                    Servers: []
+                },
+                Mail: {
+                    SendMailPDF: f.sendMailPDF ? f.sendMailPDF.checked : false,
+                    SendCrashReport: f.sendCrashReport ? f.sendCrashReport.checked : false,
+                    GeneratePDFWithVector: f.generatePDFVector ? f.generatePDFVector.checked : false
+                },
+                Clusters: {
+                    SelectedClusterFrame: f.selectedClusterFrame ? f.selectedClusterFrame.checked : false,
+                    GpsDistanceFilter: f.gpsDistanceFilter ? Number(f.gpsDistanceFilter.value) : 0
+                },
+                Pdf: {
+                    PdfOutputFont: f.pdfFont ? f.pdfFont.value : ''
+                },
+                CalculateCheck: {
+                    CalculateCheck: f.calculateCheck ? f.calculateCheck.checked : false
+                },
+                UsingVoiceInput: {
+                    UsingVoiceInput: f.usingVoiceInput ? f.usingVoiceInput.checked : false,
+                    PermissionVoiceInputWhileAnswerBack: f.permissionVoiceInput ? f.permissionVoiceInput.checked : false,
+                    UtterancePitch: f.utterancePitch ? Number(f.utterancePitch.value) : 1,
+                    UtteranceRate: f.utteranceRate ? Number(f.utteranceRate.value) : 1,
+                    OutputSpeaker: f.outputSpeaker ? f.outputSpeaker.checked : false
+                },
+                General: {
+                    ShowTest: f.showTest ? f.showTest.checked : false,
+                    ContinueAfterSave: f.continueAfterSave ? f.continueAfterSave.checked : false,
+                    DefinitionSave: f.definitionSave ? f.definitionSave.checked : false,
+                    ConfirmSaveCompleted: f.confirmSaveCompleted ? f.confirmSaveCompleted.checked : false,
+                    AutoBackup: f.autoBackup ? f.autoBackup.checked : false,
+                    ShowConfirmUploadDialog: f.showConfirmUploadDialog ? f.showConfirmUploadDialog.checked : false,
+                    ContinuousNewReport: f.continuousNewReport ? f.continuousNewReport.checked : false,
+                    LaunchKeepingWidth: f.launchKeepingWidth ? f.launchKeepingWidth.checked : false,
+                    ConfirmBulkUpload: f.confirmBulkUpload ? f.confirmBulkUpload.checked : false,
+                    InitialLibrary: f.initialLibrary ? f.initialLibrary.checked : false,
+                    ShowSentReports: f.showSentReports ? f.showSentReports.checked : false,
+                    ShowClusterFrame: f.showClusterFrame ? f.showClusterFrame.checked : false,
+                    ShowNetwork: f.showNetwork ? f.showNetwork.checked : false,
+                    ShowRequiredMark: f.showRequiredMark ? f.showRequiredMark.checked : false,
+                    ConfirmLocalDelete: f.confirmLocalDelete ? Number(f.confirmLocalDelete.value) : 0,
+                    Printer: f.printer ? Number(f.printer.value) : 0,
+                    "PJ 673Address": f.pj673Address ? f.pj673Address.value : '',
+                    "PJ 673Density": f.pj673Density ? Number(f.pj673Density.value) : 0,
+                    "GS1 128Delimiter": f.gs1Delimiter ? Number(f.gs1Delimiter.value) : 0,
+                    "GS1 128Letter": f.gs1Letter ? f.gs1Letter.value : '',
+                    AdobeReaderPrint: f.adobeReaderPrint ? f.adobeReaderPrint.checked : false,
+                    TouchPanelSensitivity: f.touchPanelSensitivity ? Number(f.touchPanelSensitivity.value) : 0,
+                    SaveLocalCameraImagePath: f.saveLocalCameraPath ? f.saveLocalCameraPath.value : '',
+                    DoubleClickOnActionCluster: f.doubleClickOnActionCluster ? f.doubleClickOnActionCluster.checked : false,
+                    ContinuousNewReportWithCopy: f.continuousNewReportWithCopy ? f.continuousNewReportWithCopy.checked : false,
+                    UseFullScreenSignArea: f.useFullScreenSignArea ? f.useFullScreenSignArea.checked : false,
+                    AllowMultiClient: f.allowMultiClient ? f.allowMultiClient.checked : false,
+                    UseSoftwareKeyboard: f.useSoftwareKeyboard ? f.useSoftwareKeyboard.checked : false,
+                    PvCameraType: f.pvCameraType ? Number(f.pvCameraType.value) : 0
+                },
+                ExternalDevice: {
+                    SignatureTablet: {
+                        UseSignatureTablet: f.useSignatureTablet ? f.useSignatureTablet.checked : false
+                    }
+                }
+            };
+
+            // servers loop
+            document.querySelectorAll('#serversContainer [data-index]').forEach(div => {
+                const i = div.dataset.index;
+                j.Server.Servers.push({
+                    ServerName: f[`serverName${i}`] ? f[`serverName${i}`].value : '',
+                    URL: f[`url${i}`] ? f[`url${i}`].value : '',
+                    UserID: f[`userId${i}`] ? f[`userId${i}`].value : '',
+                    Password: f[`password${i}`] ? f[`password${i}`].value : '',
+                    CanChangeWithLocalReports: f[`canChange${i}`] ? f[`canChange${i}`].checked : false
+                });
+            });
+
+            // サーバーが最低1件必要
+            if (j.Server.Servers.length < 1) {
+                alert('接続先は最低1件必要です');
+                return;
+            }
+
+            const txt = JSON.stringify(j, null, 2);
+            const out = document.getElementById('output');
+            out.value = txt;
+
+            // download
+            const blob = new Blob([txt], { type: 'application/x-ircf;charset=utf-8' });
+            const href = URL.createObjectURL(blob);
+            const dl = document.getElementById('downloadBtn');
+            dl.classList.remove('hidden');
+            dl.href = href;
+            dl.download = 'SettingFile.ircf';
+            dl.textContent = '.ircf をダウンロード';
+        }
+
+        // Tailwind style shortcuts
+        document.querySelectorAll('.btn').forEach(btn => btn.classList.add('mt-2', 'px-4', 'py-2', 'rounded', 'bg-orange-500', 'text-white', 'hover:bg-orange-600'));
+        document.querySelectorAll('.btn-primary').forEach(btn => btn.classList.add('mt-4', 'px-6', 'py-2', 'rounded', 'bg-orange-600', 'text-white', 'hover:bg-orange-700'));
+        document.querySelectorAll('.btn-secondary').forEach(btn => btn.classList.add('px-4', 'py-2', 'rounded', 'bg-orange-400', 'text-white', 'hover:bg-orange-500'));
+        document.querySelectorAll('.btn-danger').forEach(btn => btn.classList.add('px-3', 'py-1', 'rounded', 'bg-red-500', 'text-white', 'hover:bg-red-600'));
+        document.querySelectorAll('input:not([type=checkbox]):not([type=radio]), select').forEach(el => el.classList.add('border', 'rounded', 'p-1', 'focus:outline-none', 'focus:ring', 'focus:border-orange-500'));
+        document.body.classList.add('bg-orange-50');
+    </script>
+</body>
+
+</html>
