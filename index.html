@@ -129,9 +129,11 @@
                         <fieldset class="border rounded-lg p-4 space-y-2">
                             <label class="flex flex-col">Version
                                 <input type="number" name="version" value="1" min="1" required class="mt-1 input">
+                                <small class="text-gray-500">現状は1固定。機能の仕様変更時に変わります。</small>
                             </label>
                             <label class="flex flex-col">Revision
                                 <input type="number" name="revision" value="1" min="1" required class="mt-1 input">
+                                <small class="text-gray-500">現状は1固定。機能の仕様変更時に変わります。</small>
                             </label>
                         </fieldset>
                     </details>
@@ -157,23 +159,29 @@
                                 <div class="mt-2 space-y-2 ml-4">
                                     <label class="inline-flex items-center gap-2"><input type="checkbox" name="useProxy"
                                             class="checkbox"> プロキシを使用する (UseProxyIsChecked)</label>
-                                    <label class="flex flex-col">Proxy IP
+                                    <small class="text-gray-500">Windows版にのみ適用される項目です。</small>
+                                    <label class="flex flex-col">プロキシIPアドレス
                                         <input type="text" name="proxyIp" value="111.222.333.444" class="mt-1 input">
                                     </label>
+                                    <small class="text-gray-500">Windows版にのみ適用される項目です。</small>
                                     <label class="flex flex-col">Proxy Port
                                         <input type="number" name="proxyPort" value="555" class="mt-1 input">
                                     </label>
+                                    <small class="text-gray-500">Windows版にのみ適用される項目です。</small>
                                     <label class="flex flex-col">Proxy User
                                         <input type="text" name="proxyUser" value="proxyuser" class="mt-1 input">
                                     </label>
+                                    <small class="text-gray-500">Windows版にのみ適用される項目です。</small>
                                     <label class="flex flex-col">Proxy Pass
                                         <input type="password" name="proxyPass" value="proxypass" class="mt-1 input">
                                     </label>
+                                    <small class="text-gray-500">Windows版にのみ適用される項目です。</small>
                                     <label class="inline-flex items-center gap-2"><input type="checkbox"
                                             name="support100" class="checkbox" checked> 100‑Continue をサポート
                                         (Support100Continue)</label>
                                     <label class="inline-flex items-center gap-2"><input type="checkbox"
                                             name="useAdAuth" class="checkbox"> AD 認証を使用 (UseAdAuthentication)</label>
+                                    <small class="text-gray-500">Windows版にのみ適用される項目です。</small>
                                 </div>
                             </details>
                         </fieldset>
@@ -181,6 +189,8 @@
 
                     <fieldset class="border rounded-lg p-4" id="serversContainer">
                         <legend class="font-semibold">接続先設定（複数可）</legend>
+                        <small
+                            class="text-gray-500">取り込み時に1個以上あった場合、既存設定を全上書きし、一つ目の接続先を選択し、ローカルデータを全削除しますので注意してください。</small>
                     </fieldset>
                     <button type="button" onclick="addServer()" class="btn">＋接続先を追加</button>
 
@@ -189,11 +199,14 @@
                         <fieldset class="border rounded-lg p-4 space-y-2">
                             <label class="inline-flex items-center gap-2"><input type="checkbox" name="sendMailPDF"
                                     class="checkbox" checked> PDF をメール送信 (SendMailPDF)</label>
+                            <small class="text-gray-500">※iOSのみ</small>
                             <label class="inline-flex items-center gap-2"><input type="checkbox" name="sendCrashReport"
                                     class="checkbox" checked> クラッシュレポート送信 (SendCrashReport)</label>
+                            <small class="text-gray-500">※iOSのみ</small>
                             <label class="inline-flex items-center gap-2"><input type="checkbox"
                                     name="generatePDFVector" class="checkbox" checked> ベクター PDF 生成
                                 (GeneratePDFWithVector)</label>
+                            <small class="text-gray-500">※iOSのみ</small>
                         </fieldset>
                     </details>
 
@@ -201,10 +214,13 @@
                         <summary class="font-semibold">クラスター設定</summary>
                         <fieldset class="border rounded-lg p-4 space-y-2">
                             <label class="inline-flex items-center gap-2"><input type="checkbox"
-                                    name="selectedClusterFrame" class="checkbox" checked> SelectedClusterFrame</label>
+                                    name="selectedClusterFrame" class="checkbox"
+                                    checked>選択クラスターの枠表示SelectedClusterFrame</label>
+                            <small class="text-gray-500">※iOSのみ</small>
                             <label class="flex flex-col">GPS フィルター距離 (GpsDistanceFilter)
                                 <input type="number" name="gpsDistanceFilter" value="100" min="0"
                                     class="mt-1 input w-40">
+                                <small class="text-gray-500">※iOSのみ 10, 100, 1000のみ有効</small>
                             </label>
                         </fieldset>
                     </details>
@@ -215,6 +231,7 @@
                             <label class="flex flex-col">PDF フォント (PdfOutputFont)
                                 <input type="text" name="pdfFont" value="Font Name" class="mt-1 input">
                             </label>
+                            <small class="text-gray-500">※Windowsのみ</small>
                         </fieldset>
                     </details>
 
@@ -222,7 +239,8 @@
                         <summary class="font-semibold">計算チェック</summary>
                         <fieldset class="border rounded-lg p-4 space-y-2">
                             <label class="inline-flex items-center gap-2"><input type="checkbox" name="calculateCheck"
-                                    class="checkbox"> CalculateCheck</label>
+                                    class="checkbox"> 計算結果チェック機能を使用する (CalculateCheck)</label>
+                            <small class="text-gray-500">※Windowsのみ</small>
                         </fieldset>
                     </details>
 
@@ -234,25 +252,17 @@
                             <label class="inline-flex items-center gap-2"><input type="checkbox"
                                     name="permissionVoiceInput" class="checkbox" checked> 返信時も音声入力許可
                                 (PermissionVoiceInputWhileAnswerBack)</label>
-                            <label class="flex flex-col">音声ピッチ (UtterancePitch)
-                                <input type="number" step="0.1" name="utterancePitch" value="1" min="0.5" max="2"
+                            <label class="flex flex-col">声の高さ (UtterancePitch)
+                                <input type="number" step="0.1" name="utterancePitch" value="1.0" min="0.0" max="1.0"
                                     class="mt-1 input w-40">
                             </label>
-                            <label class="flex flex-col">音声速度 (UtteranceRate)
-                                <input type="number" step="0.1" name="utteranceRate" value="1" min="0.5" max="2"
+                            <label class="flex flex-col">声の早さ (UtteranceRate)
+                                <input type="number" step="0.1" name="utteranceRate" value="1.0" min="0.0" max="1.0"
                                     class="mt-1 input w-40">
                             </label>
                             <label class="inline-flex items-center gap-2"><input type="checkbox" name="outputSpeaker"
                                     class="checkbox" checked> スピーカー出力 (OutputSpeaker)</label>
-                        </fieldset>
-                    </details>
-
-                    <details>
-                        <summary class="font-semibold">外部機器</summary>
-                        <fieldset class="border rounded-lg p-4 space-y-2">
-                            <label class="inline-flex items-center gap-2"><input type="checkbox"
-                                    name="useSignatureTablet" class="checkbox" checked> 署名タブレットを使用
-                                (UseSignatureTablet)</label>
+                            <small class="text-gray-500">※iOSのみ</small>
                         </fieldset>
                     </details>
                     <details>
@@ -289,7 +299,7 @@
                             </label>
                             <label class="inline-flex items-center gap-2">
                                 <input type="checkbox" name="launchKeepingWidth" class="checkbox" checked>
-                                横幅を保持して起動する (LaunchKeepingWidth)
+                                横幅ロックで起動する (LaunchKeepingWidth)
                             </label>
                             <label class="inline-flex items-center gap-2">
                                 <input type="checkbox" name="confirmBulkUpload" class="checkbox" checked>
@@ -328,6 +338,7 @@
                                 プリンタ種別 (Printer)
                                 <input type="number" name="printer" value="0" class="mt-1 input w-40">
                                 <small class="text-gray-500">0:プリンタなし 1:PJ-673</small>
+                                <small class="text-gray-500 ml-2">※iOSのみ</small>
                             </label>
                             <label class="flex flex-col">
                                 PJ-673 のIPアドレス (PJ-673Address)
@@ -376,7 +387,7 @@
                             </label>
                             <label class="inline-flex items-center gap-2">
                                 <input type="checkbox" name="useFullScreenSignArea" class="checkbox" checked>
-                                手書き署名全画面表示 (UseFullScreenSignArea)
+                                手書きサイン領域最大表示 (UseFullScreenSignArea)
                                 <small class="text-gray-500 ml-2">※Windowsのみ</small>
                             </label>
                             <label class="inline-flex items-center gap-2">
@@ -402,6 +413,14 @@
                                     3 : Windows標準カメラで撮影
                                     Windows版にのみ適用される項目です。</small>
                             </label>
+                        </fieldset>
+                    </details>
+                    <details>
+                        <summary class="font-semibold">外部機器</summary>
+                        <fieldset class="border rounded-lg p-4 space-y-2">
+                            <label class="inline-flex items-center gap-2"><input type="checkbox"
+                                    name="useSignatureTablet" class="checkbox" checked> 署名タブレットを使用
+                                (UseSignatureTablet)</label>
                         </fieldset>
                     </details>
                     <!-- Submit -->
@@ -481,165 +500,175 @@
                 try {
                     const data = JSON.parse(e.target.result);
                     fillFormFromJSON(data);
-                    document.getElementById('loadStatus').textContent = '設定ファイルを読み込みました';
                 } catch (err) {
+                    console.error('ファイル読込エラー:', err);
                     document.getElementById('loadStatus').textContent = 'ファイル読込エラー';
-                    console.error('ファイル読込エラー:', err, e.target.result);
                 }
             };
             reader.readAsText(file);
         }
+
         function fillFormFromJSON(data) {
             const f = document.forms.ircfForm;
-            // 共通的なマッピング＋forEachで各セクションをリファクタリング
-            // 基本情報
-            const basicMap = [
-                ["version", "Version", "value"],
-                ["revision", "Revision", "value"]
-            ];
-            basicMap.forEach(([formName, jsonKey, prop]) => {
-                if (f[formName] && data[jsonKey] !== undefined) {
-                    f[formName][prop] = data[jsonKey];
+            console.log('読み込んだJSONデータ:', data);
+
+            try {
+                // 基本情報
+                const basicMap = [
+                    ["version", "Version", "value"],
+                    ["revision", "Revision", "value"]
+                ];
+                basicMap.forEach(([formName, jsonKey, prop]) => {
+                    if (f[formName] && data[jsonKey] !== undefined) {
+                        f[formName][prop] = data[jsonKey];
+                    }
+                });
+
+                // Server設定
+                if (data.Server) {
+                    const serverMap = [
+                        ["autoLogin", "AutoLogin", "checked"],
+                        ["canUseOffline", "CanUseOffline", "checked"],
+                        ["timeout", "TimeOut", "value"],
+                        ["useProxy", "UseProxyIsChecked", "checked"],
+                        ["proxyIp", "ProxyIpAddress", "value"],
+                        ["proxyPort", "ProxyPort", "value"],
+                        ["proxyUser", "ProxyUserName", "value"],
+                        ["proxyPass", "ProxyPassword", "value"],
+                        ["support100", "Support100Continue", "checked"],
+                        ["useAdAuth", "UseAdAuthentication", "checked"]
+                    ];
+                    serverMap.forEach(([formName, jsonKey, prop]) => {
+                        if (f[formName] && data.Server[jsonKey] !== undefined) {
+                            f[formName][prop] = data.Server[jsonKey];
+                        }
+                    });
+
+                    // サーバーリストの処理
+                    if (Array.isArray(data.Server.Servers)) {
+                        const serverContainer = document.getElementById('serversContainer');
+                        if (serverContainer) {
+                            serverContainer.innerHTML = '<legend class="font-semibold">接続先設定（複数可）</legend>';
+                            serverIndex = 0;
+                            data.Server.Servers.forEach(s => {
+                                addServer(s);
+                            });
+                        }
+                    }
                 }
-            });
 
-            // Server
-            if (data.Server) {
-                const serverMap = [
-                    ["autoLogin", "AutoLogin", "checked"],
-                    ["canUseOffline", "CanUseOffline", "checked"],
-                    ["timeout", "TimeOut", "value"],
-                    ["useProxy", "UseProxyIsChecked", "checked"],
-                    ["proxyIp", "ProxyIpAddress", "value"],
-                    ["proxyPort", "ProxyPort", "value"],
-                    ["proxyUser", "ProxyUserName", "value"],
-                    ["proxyPass", "ProxyPassword", "value"],
-                    ["support100", "Support100Continue", "checked"],
-                    ["useAdAuth", "UseAdAuthentication", "checked"]
-                ];
-                serverMap.forEach(([formName, jsonKey, prop]) => {
-                    if (f[formName] && data.Server[jsonKey] !== undefined) {
-                        f[formName][prop] = prop === "checked" ? !!data.Server[jsonKey] : data.Server[jsonKey];
-                    }
-                });
-                // サーバーリスト
-                document.getElementById('serversContainer').innerHTML = '<legend class="font-semibold">接続先設定（複数可）</legend>';
-                serverIndex = 0;
-                if (Array.isArray(data.Server.Servers)) {
-                    data.Server.Servers.forEach(s => addServer(s));
+                // Mail設定
+                if (data.Mail) {
+                    const mailMap = [
+                        ["sendMailPDF", "SendMailPDF", "checked"],
+                        ["sendCrashReport", "SendCrashReport", "checked"],
+                        ["generatePDFVector", "GeneratePDFWithVector", "checked"]
+                    ];
+                    mailMap.forEach(([formName, jsonKey, prop]) => {
+                        if (f[formName] && data.Mail[jsonKey] !== undefined) {
+                            f[formName][prop] = data.Mail[jsonKey];
+                        }
+                    });
                 }
-            }
 
-            // Mail
-            if (data.Mail) {
-                const mailMap = [
-                    ["sendMailPDF", "SendMailPDF", "checked"],
-                    ["sendCrashReport", "SendCrashReport", "checked"],
-                    ["generatePDFVector", "GeneratePDFWithVector", "checked"]
-                ];
-                mailMap.forEach(([formName, jsonKey, prop]) => {
-                    if (f[formName] && data.Mail[jsonKey] !== undefined) {
-                        f[formName][prop] = !!data.Mail[jsonKey];
-                    }
-                });
-            }
+                // Clusters設定
+                if (data.Clusters) {
+                    const clustersMap = [
+                        ["selectedClusterFrame", "SelectedClusterFrame", "checked"],
+                        ["gpsDistanceFilter", "GpsDistanceFilter", "value"]
+                    ];
+                    clustersMap.forEach(([formName, jsonKey, prop]) => {
+                        if (f[formName] && data.Clusters[jsonKey] !== undefined) {
+                            f[formName][prop] = data.Clusters[jsonKey];
+                        }
+                    });
+                }
 
-            // Clusters
-            if (data.Clusters) {
-                const clustersMap = [
-                    ["selectedClusterFrame", "SelectedClusterFrame", "checked"],
-                    ["gpsDistanceFilter", "GpsDistanceFilter", "value"]
-                ];
-                clustersMap.forEach(([formName, jsonKey, prop]) => {
-                    if (f[formName] && data.Clusters[jsonKey] !== undefined) {
-                        f[formName][prop] = data.Clusters[jsonKey];
-                    }
-                });
-            }
-
-            // Pdf
-            if (data.Pdf) {
-                if (f.pdfFont && data.Pdf.PdfOutputFont !== undefined) {
+                // PDF設定
+                if (data.Pdf && f.pdfFont && data.Pdf.PdfOutputFont !== undefined) {
                     f.pdfFont.value = data.Pdf.PdfOutputFont;
                 }
-            }
 
-            // CalculateCheck
-            if (data.CalculateCheck) {
-                if (f.calculateCheck && data.CalculateCheck.CalculateCheck !== undefined) {
-                    f.calculateCheck.checked = !!data.CalculateCheck.CalculateCheck;
+                // CalculateCheck設定
+                if (data.CalculateCheck && f.calculateCheck && data.CalculateCheck.CalculateCheck !== undefined) {
+                    f.calculateCheck.checked = data.CalculateCheck.CalculateCheck;
                 }
-            }
 
-            // UsingVoiceInput
-            if (data.UsingVoiceInput) {
-                const voiceMap = [
-                    ["usingVoiceInput", "UsingVoiceInput", "checked"],
-                    ["permissionVoiceInput", "PermissionVoiceInputWhileAnswerBack", "checked"],
-                    ["utterancePitch", "UtterancePitch", "value"],
-                    ["utteranceRate", "UtteranceRate", "value"],
-                    ["outputSpeaker", "OutputSpeaker", "checked"]
-                ];
-                voiceMap.forEach(([formName, jsonKey, prop]) => {
-                    if (f[formName] && data.UsingVoiceInput[jsonKey] !== undefined) {
-                        f[formName][prop] = prop === "checked" ? !!data.UsingVoiceInput[jsonKey] : data.UsingVoiceInput[jsonKey];
-                    }
-                });
-            }
-
-            // General
-            if (data.General) {
-                const generalMap = [
-                    ["showTest", "ShowTest", "checked"],
-                    ["continueAfterSave", "ContinueAfterSave", "checked"],
-                    ["definitionSave", "DefinitionSave", "checked"],
-                    ["confirmSaveCompleted", "ConfirmSaveCompleted", "checked"],
-                    ["autoBackup", "AutoBackup", "checked"],
-                    ["showConfirmUploadDialog", "ShowConfirmUploadDialog", "checked"],
-                    ["continuousNewReport", "ContinuousNewReport", "checked"],
-                    ["launchKeepingWidth", "LaunchKeepingWidth", "checked"],
-                    ["confirmBulkUpload", "ConfirmBulkUpload", "checked"],
-                    ["initialLibrary", "InitialLibrary", "checked"],
-                    ["showSentReports", "ShowSentReports", "checked"],
-                    ["showClusterFrame", "ShowClusterFrame", "checked"],
-                    ["showNetwork", "ShowNetwork", "checked"],
-                    ["showRequiredMark", "ShowRequiredMark", "checked"],
-                    ["confirmLocalDelete", "ConfirmLocalDelete", "value"],
-                    ["printer", "Printer", "value"],
-                    ["pj673Address", "PJ 673Address", "value"],
-                    ["pj673Density", "PJ 673Density", "value"],
-                    ["gs1Delimiter", "GS1 128Delimiter", "value"],
-                    ["gs1Letter", "GS1 128Letter", "value"],
-                    ["adobeReaderPrint", "AdobeReaderPrint", "checked"],
-                    ["touchPanelSensitivity", "TouchPanelSensitivity", "value"],
-                    ["saveLocalCameraPath", "SaveLocalCameraImagePath", "value"],
-                    ["doubleClickOnActionCluster", "DoubleClickOnActionCluster", "checked"],
-                    ["continuousNewReportWithCopy", "ContinuousNewReportWithCopy", "checked"],
-                    ["useFullScreenSignArea", "UseFullScreenSignArea", "checked"],
-                    ["allowMultiClient", "AllowMultiClient", "checked"],
-                    ["useSoftwareKeyboard", "UseSoftwareKeyboard", "checked"],
-                    ["moveInputClusterPosition", "MoveInputClusterPosition", "checked"],
-                    ["pvCameraType", "PvCameraType", "value"]
-                ];
-                generalMap.forEach(([formName, jsonKey, prop]) => {
-                    if (f[formName] && data.General[jsonKey] !== undefined) {
-                        f[formName][prop] = prop === "checked" ? !!data.General[jsonKey] : data.General[jsonKey];
-                    }
-                });
-            }
-
-            // ExternalDevice
-            if (data.ExternalDevice && data.ExternalDevice.SignatureTablet) {
-                if (f.useSignatureTablet && data.ExternalDevice.SignatureTablet.UseSignatureTablet !== undefined) {
-                    f.useSignatureTablet.checked = !!data.ExternalDevice.SignatureTablet.UseSignatureTablet;
+                // UsingVoiceInput設定
+                if (data.UsingVoiceInput) {
+                    const voiceMap = [
+                        ["usingVoiceInput", "UsingVoiceInput", "checked"],
+                        ["permissionVoiceInput", "PermissionVoiceInputWhileAnswerBack", "checked"],
+                        ["utterancePitch", "UtterancePitch", "value"],
+                        ["utteranceRate", "UtteranceRate", "value"],
+                        ["outputSpeaker", "OutputSpeaker", "checked"]
+                    ];
+                    voiceMap.forEach(([formName, jsonKey, prop]) => {
+                        if (f[formName] && data.UsingVoiceInput[jsonKey] !== undefined) {
+                            f[formName][prop] = data.UsingVoiceInput[jsonKey];
+                        }
+                    });
                 }
+
+                // General設定
+                if (data.General) {
+                    const generalMap = [
+                        ["pj673Address", "PJ 673Address", "value"],
+                        ["pj673Density", "PJ 673Density", "value"],
+                        ["gs1Delimiter", "GS1 128Delimiter", "value"],
+                        ["gs1Letter", "GS1 128Letter", "value"],
+                        ["showTest", "ShowTest", "checked"],
+                        ["continueAfterSave", "ContinueAfterSave", "checked"],
+                        ["definitionSave", "DefinitionSave", "checked"],
+                        ["confirmSaveCompleted", "ConfirmSaveCompleted", "checked"],
+                        ["autoBackup", "AutoBackup", "checked"],
+                        ["showConfirmUploadDialog", "ShowConfirmUploadDialog", "checked"],
+                        ["continuousNewReport", "ContinuousNewReport", "checked"],
+                        ["launchKeepingWidth", "LaunchKeepingWidth", "checked"],
+                        ["confirmBulkUpload", "ConfirmBulkUpload", "checked"],
+                        ["initialLibrary", "InitialLibrary", "checked"],
+                        ["showSentReports", "ShowSentReports", "checked"],
+                        ["showClusterFrame", "ShowClusterFrame", "checked"],
+                        ["showNetwork", "ShowNetwork", "checked"],
+                        ["showRequiredMark", "ShowRequiredMark", "checked"],
+                        ["confirmLocalDelete", "ConfirmLocalDelete", "value"],
+                        ["printer", "Printer", "value"],
+                        ["adobeReaderPrint", "AdobeReaderPrint", "checked"],
+                        ["touchPanelSensitivity", "TouchPanelSensitivity", "value"],
+                        ["saveLocalCameraPath", "SaveLocalCameraImagePath", "value"],
+                        ["doubleClickOnActionCluster", "DoubleClickOnActionCluster", "checked"],
+                        ["continuousNewReportWithCopy", "ContinuousNewReportWithCopy", "checked"],
+                        ["useFullScreenSignArea", "UseFullScreenSignArea", "checked"],
+                        ["allowMultiClient", "AllowMultiClient", "checked"],
+                        ["useSoftwareKeyboard", "UseSoftwareKeyboard", "checked"],
+                        ["moveInputClusterPosition", "MoveInputClusterPosition", "checked"],
+                        ["pvCameraType", "PvCameraType", "value"]
+                    ];
+                    generalMap.forEach(([formName, jsonKey, prop]) => {
+                        if (f[formName] && data.General[jsonKey] !== undefined) {
+                            f[formName][prop] = data.General[jsonKey];
+                        }
+                    });
+                }
+
+                // ExternalDevice設定
+                if (data.ExternalDevice && data.ExternalDevice.SignatureTablet) {
+                    if (f.useSignatureTablet && data.ExternalDevice.SignatureTablet.UseSignatureTablet !== undefined) {
+                        f.useSignatureTablet.checked = data.ExternalDevice.SignatureTablet.UseSignatureTablet;
+                    }
+                }
+
+                // 安全のため、すべてのdetailsを閉じる
+                document.querySelectorAll('details').forEach(d => d.open = false);
+
+                // 読込後にリアルタイム生成を実行
+                generateJSONRealtime();
+                document.getElementById('loadStatus').textContent = '設定ファイルを読み込みました';
+
+            } catch (error) {
+                console.error('設定ファイル読み込み中にエラーが発生:', error);
+                document.getElementById('loadStatus').textContent = '設定の適用中にエラーが発生しました';
             }
-
-            // detailsを全て閉じる
-            document.querySelectorAll('details').forEach(d => d.open = false);
-
-            // 読込後にリアルタイム生成を実行
-            generateJSONRealtime();
         }
 
         // ------- 接続先ブロックを動的追加 -------
@@ -798,10 +827,10 @@
                 });
             });
 
-            // サーバーが最低1件必要
+            // サーバーチェック
             if (j.Server.Servers.length < 1) {
-                alert('接続先は最低1件必要です');
-                return;
+                alert('1個以上あった場合、既存設定を全上書きし、一つ目の接続先を選択し、ローカルデータを全削除しますので注意してください。');
+                //return;
             }
 
             const txt = JSON.stringify(j, null, 2);
