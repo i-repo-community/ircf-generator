@@ -255,7 +255,155 @@
                                 (UseSignatureTablet)</label>
                         </fieldset>
                     </details>
+                    <details>
+                        <summary class="font-semibold">一般設定</summary>
+                        <fieldset class="border rounded-lg p-4 space-y-2">
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="showTest" class="checkbox" checked>
+                                テスト帳票を表示 (ShowTest)
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="continueAfterSave" class="checkbox" checked>
+                                サーバー保存後、編集を継続する (ContinueAfterSave)
+                                <small class="text-gray-500 ml-2">※iOSのみ</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="definitionSave" class="checkbox" checked>
+                                帳票定義保存 (DefinitionSave)
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="confirmSaveCompleted" class="checkbox" checked>
+                                完了保存時に確認する (ConfirmSaveCompleted)
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="autoBackup" class="checkbox" checked>
+                                自動バックアップ機能を使う (AutoBackup)
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="showConfirmUploadDialog" class="checkbox" checked>
+                                アップロード確認ダイアログを表示 (ShowConfirmUploadDialog)
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="continuousNewReport" class="checkbox" checked>
+                                連続帳票機能を使う (ContinuousNewReport)
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="launchKeepingWidth" class="checkbox" checked>
+                                横幅を保持して起動する (LaunchKeepingWidth)
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="confirmBulkUpload" class="checkbox" checked>
+                                一括アップロード時に確認メッセージを表示する (ConfirmBulkUpload)
 
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="initialLibrary" class="checkbox" checked>
+                                ライブラリ初期表示 (InitialLibrary)<small class="text-gray-500 ml-2">true:ローカル false:サーバー</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="showSentReports" class="checkbox" checked>
+                                送信済ローカル保管帳票の表示 (ShowSentReports)
+                                <small class="text-gray-500 ml-2">※iOSのみ</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="showClusterFrame" class="checkbox" checked>
+                                帳票初期表示 クラスター枠 (ShowClusterFrame)
+                                <small class="text-gray-500 ml-2">※iOSのみ</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="showNetwork" class="checkbox" checked>
+                                ネットワーク線の表示 (ShowNetwork)
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="showRequiredMark" class="checkbox" checked>
+                                はじめから必須入力マークを表示 (ShowRequiredMark)
+                                <small class="text-gray-500 ml-2">※iOSのみ</small>
+                            </label>
+                            <label class="flex flex-col">
+                                ローカル削除確認メッセージ表示 (ConfirmLocalDelete)
+                                <input type="number" name="confirmLocalDelete" value="2" class="mt-1 input w-40">
+                                <small class="text-gray-500">0:常に確認 1:一括削除時のみ 2:表示しない</small>
+                            </label>
+                            <label class="flex flex-col">
+                                プリンタ種別 (Printer)
+                                <input type="number" name="printer" value="0" class="mt-1 input w-40">
+                                <small class="text-gray-500">0:プリンタなし 1:PJ-673</small>
+                            </label>
+                            <label class="flex flex-col">
+                                PJ-673 のIPアドレス (PJ-673Address)
+                                <input type="text" name="pj673Address" value="192.168.1.1" class="mt-1 input">
+                                <small class="text-gray-500">iOSのみ</small>
+                            </label>
+                            <label class="flex flex-col">
+                                PJ-673 の印刷濃度 (PJ-673Density)
+                                <input type="number" name="pj673Density" value="5" class="mt-1 input w-40">
+                                <small class="text-gray-500">0〜10（iOSのみ）</small>
+                            </label>
+                            <label class="flex flex-col">
+                                GS1-128 の区切り文字指定方法 (GS1-128Delimiter)
+                                <input type="number" name="gs1Delimiter" value="0" class="mt-1 input w-40">
+                                <small class="text-gray-500">0:文字 1:ASCII（iOSのみ）</small>
+                            </label>
+                            <label class="flex flex-col">
+                                GS1-128 の区切り文字 (GS1-128Letter)
+                                <input type="text" name="gs1Letter" value="," class="mt-1 input">
+                                <small class="text-gray-500">iOSのみ</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="adobeReaderPrint" class="checkbox" checked>
+                                Adobeの印刷ダイアログを使用する (AdobeReaderPrint)
+                                <small class="text-gray-500 ml-2">※Windowsのみ</small>
+                            </label>
+                            <label class="flex flex-col">
+                                タッチパネル感度 (TouchPanelSensitivity)
+                                <input type="number" name="touchPanelSensitivity" value="20" class="mt-1 input w-40">
+                                <small class="text-gray-500">0〜20（Windowsのみ）</small>
+                            </label>
+                            <label class="flex flex-col">
+                                カメラロール保存先 (SaveLocalCameraImagePath)
+                                <input type="text" name="saveLocalCameraPath" value="" class="mt-1 input">
+                                <small class="text-gray-500">Windowsのみ</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="doubleClickOnActionCluster" class="checkbox" checked>
+                                アクションクラスターをダブルクリックで実行する (DoubleClickOnActionCluster)
+                                <small class="text-gray-500 ml-2">※Windowsのみ</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="continuousNewReportWithCopy" class="checkbox" checked>
+                                連続帳票コピーで作成する (ContinuousNewReportWithCopy)
+                                <small class="text-gray-500 ml-2">※Windowsのみ</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="useFullScreenSignArea" class="checkbox" checked>
+                                手書き署名全画面表示 (UseFullScreenSignArea)
+                                <small class="text-gray-500 ml-2">※Windowsのみ</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="allowMultiClient" class="checkbox" checked>
+                                多重起動を許可する (AllowMultiClient)
+                                <small class="text-gray-500 ml-2">※Windowsのみ</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="useSoftwareKeyboard" class="checkbox" checked>
+                                ソフトウェアキーボードを使用する (UseSoftwareKeyboard)
+                                <small class="text-gray-500 ml-2">※Windowsのみ</small>
+                            </label>
+                            <label class="inline-flex items-center gap-2">
+                                <input type="checkbox" name="moveInputClusterPosition" class="checkbox" checked>
+                                クラスター編集開始時に位置補正する (MoveInputClusterPosition)
+                                <small class="text-gray-500 ml-2">※Windowsのみ</small>
+                            </label>
+                            <label class="flex flex-col">
+                                PVカメラタイプ (PvCameraType)
+                                <input type="number" name="pvCameraType" value="1" class="mt-1 input w-40">
+                                <small class="text-gray-500">Windowsのみ1 : 5.2.20071以前のi-Reporterカメラアプリで撮影
+                                    2 : i-Reporterカメラアプリで撮影
+                                    3 : Windows標準カメラで撮影
+                                    Windows版にのみ適用される項目です。</small>
+                            </label>
+                        </fieldset>
+                    </details>
                     <!-- Submit -->
                     <button type="submit" class="btn-primary">JSON を生成</button>
                 </form>
@@ -470,6 +618,7 @@
                     ["useFullScreenSignArea", "UseFullScreenSignArea", "checked"],
                     ["allowMultiClient", "AllowMultiClient", "checked"],
                     ["useSoftwareKeyboard", "UseSoftwareKeyboard", "checked"],
+                    ["moveInputClusterPosition", "MoveInputClusterPosition", "checked"],
                     ["pvCameraType", "PvCameraType", "value"]
                 ];
                 generalMap.forEach(([formName, jsonKey, prop]) => {
@@ -627,6 +776,7 @@
                     UseFullScreenSignArea: f.useFullScreenSignArea ? f.useFullScreenSignArea.checked : false,
                     AllowMultiClient: f.allowMultiClient ? f.allowMultiClient.checked : false,
                     UseSoftwareKeyboard: f.useSoftwareKeyboard ? f.useSoftwareKeyboard.checked : false,
+                    MoveInputClusterPosition: f.moveInputClusterPosition ? f.moveInputClusterPosition.checked : false,
                     PvCameraType: f.pvCameraType ? Number(f.pvCameraType.value) : 0
                 },
                 ExternalDevice: {
