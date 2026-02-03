@@ -3,6 +3,20 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://i-repo-community.github.io/ircf-generator/)
 
+## ❓ これはなんですか？
+
+このツールは、**i-Reporter（アイレポーター）アプリの設定ファイル（.ircf）を簡単に作成できる無料のWebツール**です。
+
+### 💡 何ができるの？
+
+- ✅ サーバー接続設定、プロキシ設定、メール設定などをフォームで簡単入力
+- ✅ 設定ファイル（.ircf）を自動生成してダウンロード
+- ✅ メールやWebで配布し、複数のi-Reporter端末に一括設定を適用
+
+🔒 **完全無料・オープンソース・ブラウザ内で完結**（入力データは外部に送信されません）
+
+---
+
 ## 概要
 
 **i-Reporter**（アイレポーター）の設定ファイル（`.ircf`）を簡単に生成できる Web ツールです。
